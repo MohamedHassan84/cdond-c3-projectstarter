@@ -367,7 +367,7 @@ jobs:
             cat inventory.txt
             #ansible-playbook -i inventory.txt deploy-backend.yml
             ls -la
-            ansible-playbook -i "/home/circleci/project/.circleci/ansible/inventory.txt" deploy-backend.yml
+            ansible-playbook -i inventory.txt deploy-backend.yml
 
       - revert-migrations
       - destroy-environment  
@@ -383,7 +383,7 @@ jobs:
               apk add --update curl
               pip3 install awscli
         - run:
-            name: Get backend url
+            name: Backend smoke test
             command: |
               export BACKEND_IP=$(aws ec2 describe-instances \
                 --filters "Name=tag:project,Values=udapeople" \
@@ -393,10 +393,6 @@ jobs:
               export API_URL=http://$BACKEND_IP:3030
               echo $API_URL >> frontend/.env
               echo $API_URL
-        - run:
-            name: Backend smoke test.
-            command: |
-              echo "${API_URL}"
               if curl "${API_URL}/api/status" | grep "ok"
               then
                   return 0
