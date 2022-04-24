@@ -6,7 +6,7 @@ commands:
     #   # Add parameter here   
     steps:
       - run:
-          name: Destroy environments
+          name: Destroy environments 
           when: on_fail
           command: |
             aws s3 rm s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}/ --recursive
@@ -343,7 +343,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add tar gzip --yes
+            apk add tar gzip
             apk add --no-cache curl
             apk add --no-cache --upgrade bash
             apk add --no-cache --update ansible
