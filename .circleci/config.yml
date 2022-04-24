@@ -343,7 +343,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            sudo apk add tar gzip --yes
+            apk add tar gzip --yes
             apk add --no-cache curl
             apk add --no-cache --upgrade bash
             apk add --no-cache --update ansible
