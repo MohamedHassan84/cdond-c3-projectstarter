@@ -343,12 +343,15 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add tar gzip --yes
+            apk add tar gzip 
             apk add --no-cache curl
             apk add --no-cache --upgrade bash
             apk add --no-cache --update ansible
             apk add --no-cache openssh-client
             pip3 install awscli
+            apk add --no-cache --update npm
+           
+
       
       - run: 
           name: Deploy backend
