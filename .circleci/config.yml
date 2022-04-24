@@ -343,11 +343,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-<<<<<<< HEAD
             apk add tar gzip 
-=======
-            apk add tar gzip
->>>>>>> e8c889dc05d0899536e8c301fa6a6bf1c04c113c
             apk add --no-cache curl
             apk add --no-cache --upgrade bash
             apk add --no-cache --update ansible
