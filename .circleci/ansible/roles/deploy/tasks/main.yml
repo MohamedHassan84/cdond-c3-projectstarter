@@ -8,6 +8,7 @@
   become: true
   apt:
     name: ["nodejs", "npm", "tar"]
+    state: latest
     update_cache: yes
     
 - name: "install pm2"
@@ -27,7 +28,7 @@
 - name: "extract backend"
   become: true
   unarchive:
-    src: /home/circleci/project/backend.tar.gz
+    src: artifact.tar.gz
     dest: ~/udapeople/
 
 - name: "install npm to  backend" 
