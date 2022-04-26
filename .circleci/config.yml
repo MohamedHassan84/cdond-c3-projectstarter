@@ -287,6 +287,9 @@ jobs:
             then
               # If you are using kvdb.io, generate the bucket ID "KkHrY1ugEUMgGYsBS1XW1D" in your local terminal first
               curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+              echo " kvdb.io sucess"
+            else
+              echo " kvdb.io failed "
             fi
       - save_cache:
           paths: [backend/node_modules]

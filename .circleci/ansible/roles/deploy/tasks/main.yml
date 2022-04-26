@@ -44,12 +44,12 @@
   args:
     chdir: /root/backend
   register: shell_output
-- name: NPM build
-  become: true  
-  command: npm run build
-  args:
-    chdir: /root/backend    
-  register: shell_output
+# - name: NPM build
+#   become: true  
+#   command: npm run build
+#   args:
+#     chdir: /root/backend    
+#   register: shell_output
  
 - name: PM2 start backend
   become: true  
@@ -63,9 +63,9 @@
   args:
     chdir: /root/backend  
   register: shell_output  
-- name: PM2 start main
+- name: PM2 start 
   become: true
-  command: pm2 start main.js --update-env
+  command: pm2 start npm -- run start --update-env
   args:
     chdir: /root/backend/dist    
   register: shell_output
