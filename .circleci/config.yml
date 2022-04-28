@@ -290,7 +290,7 @@ jobs:
               #curl -K https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/migration1  -d '1'
               echo " kvdb.io sucess"
             else
-              curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '0'
+              curl -K https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '0'
               echo "migration1 failed "
             fi
       - save_cache:
