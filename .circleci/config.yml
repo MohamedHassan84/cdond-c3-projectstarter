@@ -456,7 +456,7 @@ jobs:
               --tags project=udapeople
       - run:
           name: Wait for the stack to complete
-          command : sleep 100 
+          command : sleep 300 
       # Here's where you will add some code to rollback on failure  
       - revert-migrations
       - destroy-environment 
@@ -484,14 +484,15 @@ jobs:
           command: |
             if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID}" ]]
             then
+              echo " No old stacks "
+            else
+              
               echo "Empty old S3 bucket and delete old frontend stack"
               aws s3 rm s3://udapeople-${OldWorkflowID} --recursive
               aws cloudformation delete-stack --stack-name udapeople-frontend-prod-${OldWorkflowID}
               echo "Delete old backend stack "
               aws cloudformation delete-stack --stack-name udapeople-backend-prod-${OldWorkflowID} 
               echo "stack deleted succesfully"
-            else
-              echo " No clean up "
             fi
             
 workflows:
