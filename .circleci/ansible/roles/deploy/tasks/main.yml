@@ -44,7 +44,7 @@
 - name: NPM install
   become: true    
   shell: |
-    npm install
+    npm install --force
   args:
     chdir: ~/
   register: shell_output
@@ -54,6 +54,12 @@
 #   args:
 #     chdir: /root/backend    
 #   register: shell_output
+- name: npm install pm2@latest -g
+  become: true
+  command: npm install pm2@latest -g
+  args:
+    chdir: ~/    
+  register: shell_output
  
 - name: PM2 start backend
   become: true  
@@ -70,16 +76,16 @@
   args:
     chdir: ~/  
   register: shell_output  
-- name: npm install pm2@latest -g
+
+# - name: pm2 restart npm  --update-env
+#   become: true
+#   command: pm2 restart npm  --update-env
+#   args:
+#     chdir: ~/    
+#   register: shell_output
+  
+- name: "Configure pm2 to start as service"
   become: true
-  command: npm install pm2@latest -g
-  args:
-    chdir: ~/    
-  register: shell_output
-- name: pm2 restart npm  --update-env
-  become: true
-  command: pm2 restart npm  --update-env
-  args:
-    chdir: ~/    
-  register: shell_output
+  shell: |
+      env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
 - debug: var=shell_output
