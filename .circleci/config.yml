@@ -493,7 +493,7 @@ jobs:
             then
               echo "Empty old S3 bucket and delete old frontend stack"
               
-              aws s3 rm s3://$old/ --recursive
+              aws s3 rm s3://${old}/ --recursive
               
               aws cloudformation delete-stack --stack-name udapeople-frontend-${OldWorkflowID}
               echo "Delete old backend stack "
