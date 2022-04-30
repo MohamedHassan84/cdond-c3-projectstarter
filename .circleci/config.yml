@@ -24,6 +24,7 @@ commands:
             # Example: kvdb.io
             SUCCESS=$(curl --insecure https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/migration_${CIRCLE_WORKFLOW_ID:0:7})
             # Logic for reverting the database state
+            echo SUCCESS = $SUCCESS
             if (( $SUCCESS == 1 ));
             then
                 cd ~/project/backend
