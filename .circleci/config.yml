@@ -173,9 +173,9 @@ jobs:
                     --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
             if [[ "${STACKS}"  != "" ]]
             then
-              curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d ${STACKS}
+              curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d '${STACKS[@]}'
             else
-              curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d 0
+              curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d '0'
             fi
             
       - run:
