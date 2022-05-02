@@ -163,17 +163,17 @@ jobs:
       - run:
           name: send workflow id to storage
           command: |
-            export OldWorkflowID=$(aws cloudformation \
+            OldWorkflowID=$(aws cloudformation \
                                   list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
                                   --no-paginate --output text)
             
-            curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldid_${CIRCLE_WORKFLOW_ID:0:7}  -d '${OldWorkflowID}'
+            curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldid_${CIRCLE_WORKFLOW_ID:0:7}  -d ${OldWorkflowID}
             
-            export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
+            STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
                     --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
             if [[ "${STACKS}"  != "" ]]
             then
-              curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d '${STACKS[@]}'
+              curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d ${STACKS}
             else
               curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d '0'
             fi
