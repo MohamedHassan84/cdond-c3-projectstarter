@@ -174,7 +174,7 @@ jobs:
             echo stacks: "${STACKS[@]}"
             if [[ "${STACKS}"  != "" ]]
             then
-              curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d ${STACKS[@]}
+              curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d ${STACKS}
             else
               curl https://kvdb.io/KkHrY1ugEUMgGYsBS1XW1D/oldstacks_${CIRCLE_WORKFLOW_ID:0:7}  -d '0'
             fi
